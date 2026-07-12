@@ -1,0 +1,131 @@
+
+================================================================================
+                        P A N G E A   S K I L L S
+                     the supercontinent of shared craft
+================================================================================
+
+                              ....::::....
+                         ..::::::::::::::::..
+                      .::::::''''    ''''::::::.
+                    .::::''    .--------.    ''::::.
+                   ::::'     .'  LANDS   '.     '::::
+                  ::::      /   OF CRAFT   \      ::::
+                  ::::     |  ___________  |     ::::
+                  ::::     | /           \ |     ::::
+                   ::::.   | |  ·  ui  · | |   .::::
+                    '::::. | |           | | .::::'
+                      '::::| |  ·  ... · | |::::'
+                         ''| |___________| |''
+                           |_______________|
+                           /               \
+                          /   install once  \
+                         /   use everywhere  \
+                        '---------------------'
+
+
+          BEFORE THE DRIFT                          AFTER (optional)
+     ========================                 ========================
+
+          ╔═══════════╗                            ·  writing
+          ║  WRITING  ║                           ··  code
+          ║   CODE    ║  ← whole                  ··· ui   ★ YOU
+          ║    UI     ║    plate                  ··  research
+          ║ RESEARCH  ║                           ·  voice
+          ╚═══════════╝
+               one pack                              still one pack
+                                                     (we refuse to split)
+
+
+--------------------------------------------------------------------------------
+  THE INSTALL RITE  (Claude Code)
+--------------------------------------------------------------------------------
+
+     $ curl -fsSL https://raw.githubusercontent.com/sisiphamus/pangea-skills/main/install.sh | bash
+
+     $  # or one land:
+     $ curl -fsSL https://raw.githubusercontent.com/sisiphamus/pangea-skills/main/install.sh | bash -s -- ui
+
+     Then open a new session and speak the name of a land:
+
+         "Use the ui skill."
+
+
+--------------------------------------------------------------------------------
+  CURRENT LANDMASS
+--------------------------------------------------------------------------------
+
+     ┌─────────────────────────────────────────────────────────────────────┐
+     │                                                                     │
+     │   ██╗   ██╗██╗                                                      │
+     │   ██║   ██║██║                                                      │
+     │   ██║   ██║██║                                                      │
+     │   ██║   ██║██║                                                      │
+     │   ╚██████╔╝██║   skills/ui/SKILL.md                                 │
+     │    ╚═════╝ ╚═╝                                                      │
+     │                                                                     │
+     │   Visual craft for frontend UI.                                     │
+     │   Layout · color · type · components · Tailwind v4 · Next.js        │
+     │   Awwwards-grade. Anti-slop. Real references. No default beige.     │
+     │                                                                     │
+     │   Coordinates:  pure look (not deploy/ops)                          │
+     │   Population:   anyone who ships interfaces                         │
+     │   Climate:      hostile to Inter, purple gradients, card grids      │
+     │                                                                     │
+     └─────────────────────────────────────────────────────────────────────┘
+
+
+     TOPOGRAPHY (ui highlands)
+
+                    peak: signature mechanism
+                   /                          \
+              banlist                     references
+             (refuse)                      (study)
+                  \                          /
+                   ··· invisible craft ···
+                            |
+                     10 refining questions
+                            |
+                      ask before you build
+
+
+--------------------------------------------------------------------------------
+  FIELD GUIDE
+--------------------------------------------------------------------------------
+
+     Claude Code     install.sh  →  ~/.claude/skills/<name>/
+     Claude.ai web   open skills/ui/SKILL.md  →  paste into chat
+     Cursor / other  copy the skill folder into that tool's skills path
+     Updates         re-run the same curl | bash
+
+
+--------------------------------------------------------------------------------
+  THE OATH OF THE PACK
+--------------------------------------------------------------------------------
+
+     1. Skills are markdown. Not a product. Not a daemon.
+     2. Portable paths only. No /home/someone/secretvault.
+     3. purpose: in frontmatter or it is fog, not a land.
+     4. share: public means it may leave the mountain.
+     5. Quality over inventory. Empty shelves beat bad coasts.
+
+
+--------------------------------------------------------------------------------
+  COMPASS
+--------------------------------------------------------------------------------
+
+                         N  (research / steal)
+                         │
+            writing  ────┼────  ui
+                         │
+                         S  (ship / ops — not in this pack yet)
+
+
+     repo:  https://github.com/sisiphamus/pangea-skills
+     card:  FOR_PEOPLE.md
+     list:  catalog.md
+
+
+================================================================================
+  "the continents only look separate. the craft was always one plate."
+================================================================================
+
