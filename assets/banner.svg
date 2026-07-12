@@ -1,29 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="960" height="220" viewBox="0 0 960 220" role="img" aria-label="Pangea Skills">
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="200" viewBox="0 0 960 200" role="img" aria-label="Pangea Skills">
   <defs>
-    <linearGradient id="sky" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a"/>
-      <stop offset="45%" stop-color="#1e1b4b"/>
-      <stop offset="100%" stop-color="#134e4a"/>
+    <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#141414"/>
     </linearGradient>
-    <linearGradient id="land" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#22d3ee"/>
-      <stop offset="35%" stop-color="#a78bfa"/>
-      <stop offset="70%" stop-color="#f472b6"/>
-      <stop offset="100%" stop-color="#fbbf24"/>
-    </linearGradient>
-    <linearGradient id="glow" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18"/>
+    <!-- single quiet highlight, not a rainbow -->
+    <radialGradient id="spot" cx="78%" cy="28%" r="45%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.06"/>
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
+    </radialGradient>
   </defs>
-  <rect width="960" height="220" rx="20" fill="url(#sky)"/>
-  <circle cx="820" cy="48" r="52" fill="#fbbf24" opacity="0.15"/>
-  <circle cx="120" cy="180" r="70" fill="#22d3ee" opacity="0.12"/>
-  <circle cx="480" cy="30" r="40" fill="#f472b6" opacity="0.12"/>
-  <!-- abstract continents -->
-  <path d="M140 130 C180 90, 240 95, 280 120 C320 145, 360 150, 400 130 C440 110, 500 115, 540 140 C580 165, 640 160, 700 135 C740 115, 790 120, 830 145 L830 190 L140 190 Z" fill="url(#land)" opacity="0.85"/>
-  <path d="M140 130 C180 90, 240 95, 280 120 C320 145, 360 150, 400 130 C440 110, 500 115, 540 140 C580 165, 640 160, 700 135 C740 115, 790 120, 830 145 L830 155 C790 130, 740 125, 700 145 C640 170, 580 175, 540 150 C500 125, 440 120, 400 140 C360 160, 320 155, 280 130 C240 105, 180 100, 140 140 Z" fill="url(#glow)"/>
-  <text x="48" y="72" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="42" font-weight="700" fill="#f8fafc" letter-spacing="2">PANGEA</text>
-  <text x="48" y="112" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" font-weight="600" fill="url(#land)" letter-spacing="6">SKILLS</text>
-  <text x="48" y="150" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" fill="#cbd5e1">shared craft · one command · starts with ui</text>
+
+  <rect width="960" height="200" rx="16" fill="url(#wash)"/>
+  <rect width="960" height="200" rx="16" fill="url(#spot)"/>
+
+  <!-- thin top edge, barely there -->
+  <line x1="48" y1="1" x2="912" y2="1" stroke="#ffffff" stroke-opacity="0.06" stroke-width="1"/>
+
+  <!-- wordmark: heavy, tracked, no decoration -->
+  <text x="56" y="92"
+        font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+        font-size="44" font-weight="600" letter-spacing="0.28em"
+        fill="#f5f5f5">PANGEA</text>
+
+  <text x="56" y="128"
+        font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+        font-size="15" font-weight="400" letter-spacing="0.42em"
+        fill="#737373">SKILLS</text>
+
+  <!-- one line, lowercase, unbothered -->
+  <text x="56" y="168"
+        font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif"
+        font-size="13" font-weight="400" letter-spacing="0.06em"
+        fill="#525252">skills. install once. leave.</text>
+
+  <!-- tiny status dot — alive, not loud -->
+  <circle cx="900" cy="100" r="3.5" fill="#e5e5e5" opacity="0.35"/>
 </svg>
