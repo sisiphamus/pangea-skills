@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="Pangea Skills" width="720"/>
+  <img src="assets/hero.png" alt="Pangea Skills" width="720"/>
 </p>
 
 <p align="center">shared skills for claude. no ceremony.</p>
