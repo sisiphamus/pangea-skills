@@ -1,14 +1,10 @@
-# Pangea Skills — catalog
-
-Auto-generated. Run `scripts/build-catalog.sh` after adding skills.
+# Catalog
 
 | Skill | Purpose |
 |-------|---------|
-| `ui` | Visual craft layer for frontend UI — layout, color, type, components, Tailwind v4 + Next.js quality bar; pure look (not deploy/ops). |
-
-## Install
+| [`ui`](./skills/ui/SKILL.md) | Visual frontend craft — layout, color, type, anti-slop |
 
 ```bash
-./install.sh          # all
-./install.sh ui       # one
+./install.sh        # all
+./install.sh ui     # one
 ```

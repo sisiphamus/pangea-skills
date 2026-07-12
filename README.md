@@ -1,151 +1,51 @@
-```
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-░                                                                          ░
-░     ██████╗  █████╗ ███╗   ██╗ ██████╗ ███████╗ █████╗                   ░
-░     ██╔══██╗██╔══██╗████╗  ██║██╔════╝ ██╔════╝██╔══██╗                  ░
-░     ██████╔╝███████║██╔██╗ ██║██║  ███╗█████╗  ███████║                  ░
-░     ██╔═══╝ ██╔══██║██║╚██╗██║██║   ██║██╔══╝  ██╔══██║                  ░
-░     ██║     ██║  ██║██║ ╚████║╚██████╔╝███████╗██║  ██║                  ░
-░     ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝                  ░
-░                                                                          ░
-░              ███████╗██╗  ██╗██╗██╗     ██╗     ███████╗                 ░
-░              ██╔════╝██║ ██╔╝██║██║     ██║     ██╔════╝                 ░
-░              ███████╗█████╔╝ ██║██║     ██║     ███████╗                 ░
-░              ╚════██║██╔═██╗ ██║██║     ██║     ╚════██║                 ░
-░              ███████║██║  ██╗██║███████╗███████╗███████║                 ░
-░              ╚══════╝╚═╝  ╚═╝╚═╝╚══════╝╚══════╝╚══════╝                 ░
-░                                                                          ░
-░         before the continents drifted, the craft was whole.              ░
-░                                                                          ░
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-```
+<p align="center">
+  <img src="assets/banner.svg" alt="Pangea Skills" width="720"/>
+</p>
 
-# Pangea Skills
+<p align="center">
+  <img alt="public" src="https://img.shields.io/badge/share-public-22d3ee?style=for-the-badge&labelColor=0f172a"/>
+  <img alt="ui skill" src="https://img.shields.io/badge/land-ui-a78bfa?style=for-the-badge&labelColor=0f172a"/>
+  <img alt="install" src="https://img.shields.io/badge/install-1_command-f472b6?style=for-the-badge&labelColor=0f172a"/>
+  <img alt="no mcp" src="https://img.shields.io/badge/stack-markdown_only-fbbf24?style=for-the-badge&labelColor=0f172a"/>
+</p>
 
-**One pack. Many lands of craft. Shared with anyone who can run one command.**
-
-Procedures that travel — not software, not SaaS, not another MCP to configure.  
-Markdown skills that drop into Claude Code (and friends) and just *work*.
-
-```
-                    .              .  .  .
-          .     *  .   *    .   .        *    .
-       *     .        .   .     *    .     .
-    .     ╔══════════════════════════════════╗   *
-          ║   ≈≈≈≈≈  T H E   A T L A S  ≈≈≈≈ ║
-   *      ║                                  ║      .
-          ║     · writing coasts             ║
-      .   ║     · code ridges                ║  *
-          ║     · ui highlands    ← you are  ║
-          ║     · research trenches          ║
-    *     ║     · voice archipelagos         ║     .
-          ║                                  ║
-          ╚══════════════════════════════════╝
-               \  drift is optional  /
-                `--------------------'
-```
+<p align="center"><b>Shared skills for Claude Code.</b> Drop in. Build better.</p>
 
 ---
 
-## Install (the whole point)
-
-**Claude Code — one shot:**
+### Install
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/sisiphamus/pangea-skills/main/install.sh | bash
 ```
 
-That copies every skill into `~/.claude/skills/`.  
-Open a **new** session and say:
+New session → **“use the ui skill”**
 
-> Use the **ui** skill.
-
-**One land only:**
+<details>
+<summary>one skill only · clone · paste mode</summary>
 
 ```bash
+# just ui
 curl -fsSL https://raw.githubusercontent.com/sisiphamus/pangea-skills/main/install.sh | bash -s -- ui
+
+# clone
+git clone https://github.com/sisiphamus/pangea-skills.git && cd pangea-skills && ./install.sh
 ```
 
-**Clone classic:**
+**Claude.ai:** open [`skills/ui/SKILL.md`](./skills/ui/SKILL.md) → paste into chat.
 
-```bash
-git clone https://github.com/sisiphamus/pangea-skills.git
-cd pangea-skills
-./install.sh
-```
-
-No Python. No MCP. No API keys. No path hell.
+</details>
 
 ---
 
-## The map
+### Lands
 
-| Land | Path | What it is |
-|------|------|------------|
-| **ui** | [`skills/ui/`](./skills/ui/SKILL.md) | Visual craft layer — layout, color, type, components. Awwwards bar, anti-AI-slop bans, real references. Pure *look* (not deploy ops). |
-
-```
-                         N
-                         │
-              research   │   writing
-                   \     │     /
-                    \    │    /
-              code ──●── PANGEA ── ui
-                    /    │    \
-                   /     │     \
-              voice      │   gtm
-                         │
-                         S
-```
-
-More continents when we push them. The supercontinent grows by commit.
+| | Skill | What |
+|:--:|:------|:-----|
+| 🎨 | **[ui](./skills/ui/SKILL.md)** | Frontend craft — type, color, layout, anti-slop |
 
 ---
 
-## Chat-only / Claude.ai
-
-No install needed:
-
-1. Open [`skills/ui/SKILL.md`](./skills/ui/SKILL.md)
-2. Copy the whole file
-3. Paste into chat: *“Follow this skill for the rest of the session.”*
-
----
-
-## For humans in a hurry
-
-→ **[FOR_PEOPLE.md](./FOR_PEOPLE.md)** — 30-second card  
-→ **[catalog.md](./catalog.md)** — table of lands  
-→ **[ATLAS.txt](./ATLAS.txt)** — full ASCII atlas (print it, frame it, ignore it)
-
----
-
-## Contribute a land (maintainers)
-
-```bash
-./scripts/add-skill.sh /path/to/skill-folder
-# strip private paths, set purpose: + share: public in frontmatter
-./scripts/build-catalog.sh
-git add skills catalog.md && git commit -m "land: <name>" && git push
-```
-
-Everyone who re-runs `install.sh` gets the new coast.
-
----
-
-## License / spirit
-
-Share freely. Steal the craft. Credit optional; quality not optional.
-
-```
-     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    ~  "the best skill is the one someone actually   ~
-    ~   loads before they touch a pixel."            ~
-     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                        \
-                         \  ◆
-```
-
----
-
-**Pangea Skills** · [github.com/sisiphamus/pangea-skills](https://github.com/sisiphamus/pangea-skills)
+<p align="center">
+  <sub>craft was always one plate · <a href="https://github.com/sisiphamus/pangea-skills">sisiphamus/pangea-skills</a></sub>
+</p>

@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
-# Rebuild catalog.md from skills/*/SKILL.md frontmatter.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 OUT="$ROOT/catalog.md"
 {
-  echo "# Pangea Skills — catalog"
-  echo
-  echo "Auto-generated. Run \`scripts/build-catalog.sh\` after adding skills."
+  echo "# Catalog"
   echo
   echo "| Skill | Purpose |"
   echo "|-------|---------|"
@@ -21,14 +18,12 @@ OUT="$ROOT/catalog.md"
         in_fm==1 && $1=="description:" { sub(/^description:[[:space:]]*/, ""); gsub(/\|/, "\\|"); print; exit }
       ' "${d}SKILL.md"
     )"
-    echo "| \`$name\` | ${purpose:-(no purpose)} |"
+    echo "| [\`$name\`](./skills/$name/SKILL.md) | ${purpose:-(no purpose)} |"
   done
   echo
-  echo "## Install"
-  echo
   echo '```bash'
-  echo './install.sh          # all'
-  echo './install.sh ui       # one'
+  echo './install.sh        # all'
+  echo './install.sh ui     # one'
   echo '```'
 } >"$OUT"
 echo "wrote $OUT"
