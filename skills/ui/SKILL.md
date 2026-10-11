@@ -8,18 +8,15 @@ layers: []
 
 # UI build
 
-## Load stack (shared pack)
-
-This skill is self-contained. If it is installed under your agent skills folder (e.g. `~/.claude/skills/ui/`), load and follow it for any UI build.
-
 Visual craft layer for any work touching a line of UI: the quality bar, the look, the rules that make a build distinctive rather than templated.
 
-Deploy/ops (project setup, brand assets, screenshot review loop, GitHub + Vercel) is **not** in this pack — ask the sharer if you need that layer.
+Deploy/ops (project CLAUDE.md, brand_assets, screenshot review loop, GitHub + Vercel deploy): see `skills/ui-ops/`.
 
 ## Principles
 1. **Awwwards-grade, never templated:** every build calibrates against the named reference set below and aims for distinctively-curated quality, not a CMS-theme look.
 2. **Ask before touching a line:** at least 10 refining questions (do not assume a top bar or sidebar).
 3. **Visual weight on every section:** if removing the heading leaves nothing, the section needs more content or a stronger background treatment.
+4. **Nothing cut off:** every visible element — text, buttons, cards, images, 3D/canvas objects, focus rings — must sit fully inside its container and the viewport at the sizes you ship. Partial letters, clipped CTAs, and off-screen corners are a fail, not a polish item.
 
 ## Workflow
 1. **Look at the references.** Open awwwards.com and the studios in the Reference set; for any treatment that matches the idea, view-source or open devtools to inspect the HTML/CSS.
@@ -27,14 +24,17 @@ Deploy/ops (project setup, brand assets, screenshot review loop, GitHub + Vercel
 3. **Set up** a subfolder named after the app for new builds.
 4. **Decompose** into parallel workstreams (one per component) when components and styling cleanly separate; otherwise build single-threaded.
 5. **Verify the dev server renders fonts correctly** before moving to components.
-6. **Build** per the Rules.
-7. **Run every piece of on-page copy through a human-voice pass before calling it done.** Scan headline, body, labels, and CTA against the copy-side AI tells below (em-dash overuse, marketing buzzwords, "Not X. Just Y." cadence). Fix before ship. Copy is judged as hard as pixels.
+6. **Build** per the Rules. Prefer the hard human path over the easy agent path (see Agent-path tells).
+7. **Run every piece of on-page copy through the writing skill before calling it done.** Load `skills/writing/` and run `scripts/lib/scan-ai-tells.sh` on the headline, body copy, labels, and CTA text; a nonzero exit lists the banned tokens to fix. This is not optional for a brand/marketing build — copy is judged as hard as pixels (see the copy-side tells below).
+8. **Worth-it audit (required, last step).** Spawn a sub-agent whose only job is to walk every DOM/text/visual element and ask: is this worthwhile? Does this text carry the main message or enable a primary action? If not, mark it for deletion. Apply the cuts before calling the build done. No decorative micro-type, no grid wallpaper, no chrome that only labels the page to itself.
+9. **No-cutoff check (required, every screenshot pass).** Before calling any layout done, look at real frames (desktop + mobile) and confirm nothing is cut off: text not truncated mid-word unless intentional ellipsis with a known full string; buttons/CTAs fully visible; glass/cards not clipped by overflow hidden; hero objects (images, 3D, video) fully in frame or deliberately bled with a reason; no content under fixed chrome. If anything is cut off, fix layout before more polish.
 
 ## Rules
 - **Do** use a custom color palette; ask the operator, do not default.
 - **Do** use real images from the web.
 - **Do** make mock/placeholder data look real: 5+ list items, labeled chart axes, enough rows to feel populated.
 - **Do** define explicit font utility rules in CSS (`.font-serif { font-family: var(--font-serif), Georgia, serif; }`); Next.js injects `next/font` variables on `<body>`, so do not re-register them in `@theme inline`.
+- **Do** always check that elements are not cut off — at 1440×900 and 375px minimum, and after every layout change. Screenshot and read the frame; do not trust CSS intent alone.
 - **Don't** use icons or emojis in the design.
 - **Don't** use pre-made templates or basic 2x3 card grids; custom everything.
 - **Don't** use `position: absolute/fixed` for readable content; use flex/grid so content contributes to layout sizing.
@@ -61,6 +61,15 @@ The next two sections are a match-and-refuse reference, not a read-through: scan
 - **Glassmorphism as default** — blurred glass cards used decoratively everywhere. Rare and purposeful, or nothing.
 - **Repeated section kickers** — the same tiny tracked label above every section, turning a brand page into AI scaffolding.
 - **Em-dash overuse, marketing buzzwords, aphoristic cadence** ("Not X. Just Y.") — the copy-side tells. These are caught by the copy scan gate (Workflow step 7), not by eyeballing.
+
+### Agent-path tells (choose the hard thing)
+Agents default to moves that are **easy to code** and look "designed." Humans default to moves that cost something. When two options work, pick the harder one if it looks more human.
+
+- **Tiny 10–11px meta type in random corners** — uppercase tracked labels above the header, under the footer, beside section titles ("LANDS", "01 PUBLIC", "SISIPHAMUS / FOO", "NO CEREMONY", "INSTALL · CLAUDE CODE"). Easy chrome; almost never the message. **Ban decorative micro-type.** If a line of text is not the main message or a primary action, delete it. Section labels earn a place only when the section is truly a sequence a human needs to navigate by name.
+- **Decorative page grid lines** (CSS background grid, technical blueprint overlay, faint column rules as atmosphere) — cheap agent atmosphere. Real studios use structure when content needs it, not as wallpaper. **No decorative grids.**
+- **Scaffold chrome that names the UI to itself** — "hero", "features", "catalog", "1 public", status-y labels with no job. If removing the string changes nothing about what the visitor can do or understand, it was never needed.
+- **Every piece of text needs a reason.** Before shipping any string, answer: what decision does this help the visitor make, or what action does it enable? If the answer is "atmosphere" or "it looked balanced," cut it.
+- **Easy vs hard:** grid lines, glass cards, mono labels, fade-up-on-scroll, and 2×3 feature rows are easy. A real 3D object with physics, a custom type system that carries structure, a single obsessive interaction — hard. Choose hard when the brief allows it; that is what reads as human craft.
 
 ### More AI-tell bans (mined from field research + a local build-judge system)
 Cross-referencing Anthropic's own `frontend-design` skill, a Reddit-mined 3,000-comment tell study, independent design-slop critics, and a hard-earned local corpus (a build → screenshot → harsh-critic → iterate loop judged against world-class exemplars, with every finding calibrated against the operator's own eye before it counted):
@@ -110,15 +119,19 @@ The banlist above says what to avoid; this says what "feels right" is actually m
 - **Edge cases handled invisibly.** Long strings truncate or wrap gracefully; numbers and dates are formatted; zero/one/many all read correctly; nothing overflows or reflows on real content. The user never sees the seam.
 - **Respect the system.** Honor `prefers-reduced-motion` (kill non-essential motion), `prefers-color-scheme` if you ship both, and native focus/scroll behavior — don't fight the platform to look clever.
 
-### Fit-to-viewport / dense cockpit layouts
+### Fit-to-viewport / no cutoff (always)
+**Always check that elements are not being cut off.** This is not optional and not only for dense cockpits — every UI build, every screenshot pass.
+
 - **Verify content visibility, not just page scroll.** "No scroll" means key content is visible at the target size, unclipped inside its panel. `scrollHeight == clientHeight` only proves the page element does not scroll; an internal panel can satisfy that while clipping or internally scrolling its own content. Assert that key elements are actually within the visible area of their panel.
+- **What "cut off" means:** text missing the last letters or line; buttons half outside a card or viewport; images/3D objects clipped by `overflow: hidden` without intent; content sitting under a sticky header/nav; absolute/fixed layers drawing outside the safe frame; glass or hero objects whose edges vanish at the screen edge by accident.
+- **How to check:** screenshot at 1440×900 and 375×844 (or 390×844), open the PNGs, and look edge-to-edge. If anything is truncated or off-frame, fix layout before more visual polish. When in doubt, widen padding, reduce scale, or reflow — never ship hoping the operator's browser is wider.
 - **Test at the smaller common desktop size (1440x900), not only the largest target.** Dense layouts look complete at 1600x1000 and degrade at 1440x900; the larger size masks density problems that bite at the common size.
-- **Also verify at 375px width (mobile):** no overflow, no text truncation, no elements off-screen. Resize browser or use devtools device toggle.
+- **Also verify at 375px width (mobile):** no overflow, no accidental text truncation, no elements off-screen. Resize browser or use devtools device toggle.
 - **Watch two clipping mechanisms in no-scroll grids:** (1) a greedy `auto` row in a grid starves an adjacent `minmax(0, 1fr)` content row, leaving it too short to show its content; use `minmax(0, auto)` or an explicit size for non-content rows. (2) `min-h-0` on a flex child collapses the reported height of a CSS `columns-2` multi-column container inside it, causing overlap and clip; remove `min-h-0` from any flex child that wraps a multi-column container, or restructure to avoid the conflict.
 - **Verify declared motion against the actual rendered frames, not the coded intent.** A claimed effect (a raking light, a camera zoom, a subtle saturation shift) that doesn't visibly read in a screenshot is a fault, full stop — credit motion only for what's visible in the render, never for what the code says it should do.
 
 ## Visual sourcing
-Where to pull a distinctive, branded look from (not generic AI-vibe-coded).
+Where to pull a distinctive, branded look from (not generic AI-vibe-coded). For the project setup, screenshot review loop, and deploy that wrap these, see `skills/ui-ops/`.
 - **Clone a reference whole-page.** Beyond inspecting one treatment in devtools: find a reference site (dribbble.com, godly.website, awwwards.com), capture a full-page screenshot (F12 console, Cmd/Ctrl+Shift+P, "screenshot"), copy the computed CSS from Elements, then in a fresh session paste the CSS, drop in the screenshot, and clone it to close. Then layer the brand in (colors, logo, copy).
 - **21st.dev for component-level polish.** Pull component-level inspiration (backgrounds, shaders, buttons, hero waves, mouse highlights) from [21st.dev](https://21st.dev): copy the component's prompt/code chunk and work it in behind or around the existing layout.
 - **Aceternity UI for component-level polish.** [ui.aceternity.com/components](https://ui.aceternity.com/components) — free React/Next.js + Tailwind + Framer Motion component library: aurora/particle backgrounds, 3D hover cards, text-morph/typewriter effects, floating navs, globes/timelines. Same role as 21st.dev — pull the component, then re-skin it with the build's own palette rather than shipping it stock.
@@ -139,11 +152,13 @@ Where to pull a distinctive, branded look from (not generic AI-vibe-coded).
 - **Verify:** checked at 1440x900, not just the largest size, and confirmed key content sits unclipped inside each panel, not just that the page does not scroll.
 
 ## Definition of done (gate before you call it shipped)
-Do not call a UI build done until all four pass:
+Do not call a UI build done until all six pass:
 1. **Refined + earned** — 10+ questions asked (palette, type, layout, signature element came from the operator, not a default); you can name the one specific mechanism that earns the look, not just the ingredient list (the ingredient trap).
-2. **No tell shipped** — scanned against both ban sections, nothing matches; headline/body/labels/CTA free of the copy-side tells listed above.
+2. **No tell shipped** — scanned against AI-tell bans *and* Agent-path tells (no decorative 10px meta, no wallpaper grids, no scaffold labels); `scripts/lib/scan-ai-tells.sh` on headline/body/labels/CTA exits clean.
 3. **Invisible craft** — every state present and styled, focus visible and keyboard-navigable, feedback immediate, edge cases handled.
 4. **Verified in frames** — checked at 1440x900 and 375px; key content unclipped inside its panel; declared motion actually reads in the render.
+5. **Nothing cut off** — desktop + mobile screenshots show every kept element fully visible (no accidental truncation, no off-frame CTAs/objects, no content under chrome). If anything is cut off, it is not done.
+6. **Worth-it audit passed** — a sub-agent reviewed every element; anything that is not the main message or a primary action was removed; leftover strings each have a stated reason.
 
 ## Reference: the look (must look at before building)
 - **awwwards.com** — daily-curated SOTD/SOTM winners; the broad calibration source.

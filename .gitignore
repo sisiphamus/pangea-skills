@@ -4,3 +4,20 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 *.egg-info/
+
+# archive-2026-10: rebuildable deps, build output, secrets
+node_modules/
+.venv/
+venv/
+__pycache__/
+.next/
+.turbo/
+dist/
+build/
+target/
+*.log
+.env
+.env.*
+*.pem
+*.key
+id_rsa*
